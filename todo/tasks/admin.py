@@ -3,9 +3,10 @@ from .models import Category, Task
 
 
 class TaskAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'title', 'category', 'priority', 'deadline', 'done')
+    list_display = ('pk', 'title', 'category', 'priority', 'deadline', 'done', 'description')
     search_fields = ('title',)
     list_filter = ('done', 'deadline', 'category', 'priority')
+    empty_value_display = '------'
 
 
 admin.site.register(Task, TaskAdmin)

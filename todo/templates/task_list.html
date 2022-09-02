@@ -9,17 +9,17 @@
           <div class="card-body p-4 text-white">
             <div class="text-center pt-3 pb-2">
               <img src="{% static 'img/check1.webp' %}" alt="Check" width="60">
-              <h2 class="my-4">Task List</h2>
+              <h2 class="my-4">Список задач</h2>
             </div>
             <table class="table text-white mb-0">
               <thead>
                 <tr>
                   <th scope="col">No.</th>
-                  <th scope="col">Task</th>
-                  <th scope="col">Category</th>
-                  <th scope="col">Priority</th>
-                  <th scope="col">Deadline</th>
-                  <th scope="col">Status</th>
+                  <th scope="col">Задача</th>
+                  <th scope="col">Категория</th>
+                  <th scope="col">Приоритет</th>
+                  <th scope="col">Дедлайн</th>
+                  <th scope="col">Статус</th>
                 </tr>
               </thead>
               <tbody>
@@ -36,7 +36,7 @@
                     <h6 class="mb-0"><span class="badge">{{ task.get_priority_display }}</span></h6>
                   </td>
                   <td class="align-middle">
-                    <i class="fas fa-hourglass-half me-2 text-warning"></i>{{ task.deadline|date:'d M Y'|time:'H:i'|default_if_none:'-' }}
+                    <i class="fas fa-hourglass-half me-2 text-warning"></i>{{ task.deadline|default_if_none:'Без срока' }}
                   </td>
                   <td class="align-middle">
                       {% if task.done %}

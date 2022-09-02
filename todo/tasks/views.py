@@ -10,7 +10,7 @@ def index(request):
 
 def category_tasks(request, slug):
     category = get_object_or_404(Category, slug=slug)
-    context = {'category': category}
+    context = {'tasks': category.tasks.all()}
     return render(request, 'task_list.html', context)
 
 
