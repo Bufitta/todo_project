@@ -1,12 +1,29 @@
 import re, datetime
 from rest_framework import serializers
 from tasks.models import Task, Category, User
+from django.core.exceptions import ObjectDoesNotExist
+
+
+class EmailRelatedField(serializers.RelatedField):
+    lookup_field = 'pk'
+
+    def to_representation(self, value):
+        return value.email
+
+    def to_internal_value(self, data):
+        queryset = self.get_queryset()
+        try:
+            return queryset.get(pk=self.pk)
+        except ObjectDoesNotExist:
+            self.fail('does_not_exist', pk_value=data)
+        except (TypeError, ValueError):
+            self.fail('invalid')
 
 
 class TaskSerializer(serializers.ModelSerializer):
     id = serializers.HyperlinkedIdentityField(view_name='api:task-detail')
-    user = serializers.SlugRelatedField(slug_field='email', read_only=True)
-    priority = serializers.CharField(source='get_priority_display')
+    user = EmailRelatedField(queryset=User.objects.all())
+    priority = serializers.CharField(source='get_priority_display', required=False)
     category = serializers.HyperlinkedRelatedField(view_name='api:category-detail', queryset=Category.objects.all())
     to_deadline = serializers.SerializerMethodField()
 
