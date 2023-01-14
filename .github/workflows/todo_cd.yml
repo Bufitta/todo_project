@@ -20,7 +20,7 @@ jobs:
         script: |
           cd /home/todo_project
           git pull origin master
-          source todoenv/bin/activate
+          source /home/todoenv/bin/activate
           pip install -r requirements.txt
           python manage.py migrate
           sudo systemctl daemon-reload
