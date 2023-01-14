@@ -1,0 +1,33 @@
+name: TODO CD
+
+on:
+  workflow_run:
+    workflows: ["TODO CI"]
+    branches: ["master"]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploy app
+      uses: appleboy/ssh-action@master
+      with:
+        username: ${{ secrets.USERNAME }}
+        host: ${{ secrets.HOST }}
+        key: ${{ secrets.SSH_KEY }}
+        script: |
+          cd /home/todo_project
+          git pull origin master
+          source todoenv/bin/activate
+          pip install -r requirements.txt
+          python manage.py migrate
+          sudo systemctl daemon-reload
+          sudo systemctl restart gunicorn
+#    - uses: yanzay/notify-telegram@v0.1.0
+#      if: always()
+#      with:
+#        chat: ${{ secrets.chat }}
+#        token: ${{ secrets.token }}
+#        status: ${{ job.status }}
