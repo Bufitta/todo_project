@@ -3,7 +3,6 @@ name: TODO CD
 on:
   workflow_run:
     workflows: ["TODO CI"]
-    branches: ["master"]
     types:
       - completed
 
@@ -25,9 +24,8 @@ jobs:
           python manage.py migrate
           sudo systemctl daemon-reload
           sudo systemctl restart gunicorn
-#    - uses: yanzay/notify-telegram@v0.1.0
-#      if: always()
-#      with:
-#        chat: ${{ secrets.chat }}
-#        token: ${{ secrets.token }}
-#        status: ${{ job.status }}
+    - uses: appleboy/telegram-action@master
+      with:
+        chat: ${{ secrets.chat }}
+        token: ${{ secrets.token }}
+        status: ${{ job.status }}
