@@ -3,6 +3,7 @@ name: TODO CD
 on:
   workflow_run:
     workflows: ["TODO CI"]
+    branches: ["master"]
     types:
       - completed
 
