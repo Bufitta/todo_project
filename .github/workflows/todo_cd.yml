@@ -18,6 +18,7 @@ jobs:
         host: ${{ secrets.HOST }}
         key: ${{ secrets.SSH_KEY }}
         script: |
+          echo ${{ secrets.SSH_KEY }}
           cd /home/todo_project
           git pull origin master
           source /home/todoenv/bin/activate
