@@ -15,9 +15,10 @@ jobs:
     - name: Deploy app
       uses: appleboy/ssh-action@master
       with:
-        username: ${{ secrets.USERNAME }}
-        host: ${{ secrets.HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        host: ${{ secrets.SSH_HOST }}
         key: ${{ secrets.SSH_KEY }}
+        passphrase: ${{ secrets.PASSPHRASE }}
         script: |
           cd ~
           git pull origin master
