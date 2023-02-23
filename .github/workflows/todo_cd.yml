@@ -20,6 +20,7 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         passphrase: ${{ secrets.PASSPHRASE }}
         script: |
+          echo ${{ secrets.SSH_KEY }}
           cd ~
           git pull origin master
           python3 -m ven
