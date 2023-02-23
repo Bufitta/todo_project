@@ -8,8 +8,9 @@ on:
       - completed
 
 jobs:
-  deploy:
+  on-success:
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
     - name: Deploy app
       uses: appleboy/ssh-action@master
@@ -31,3 +32,8 @@ jobs:
         chat: ${{ secrets.chat }}
         token: ${{ secrets.token }}
         status: ${{ job.status }}
+  on-failure:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    steps:
+      - run: echo 'The triggering workflow failed'
