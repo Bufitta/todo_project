@@ -1,6 +1,10 @@
 name: TODO CI
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [ master ]
+  puu_request:
+    branches: [ master ]
 
 jobs:
   build:
@@ -9,7 +13,7 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        python-version: [3.7, 3.8, 3.9]
+        python-version: [3.7]
 
     steps:
     - uses: actions/checkout@v3
