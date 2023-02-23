@@ -19,10 +19,9 @@ jobs:
         host: ${{ secrets.HOST }}
         key: ${{ secrets.SSH_KEY }}
         script: |
-          echo ${{ secrets.SSH_KEY }}
           cd ~
           git pull origin master
-          source ~/bin/activate
+          source ~/venv/bin/activate
           pip install -r requirements.txt
           python manage.py makemigrations
           python manage.py migrate
