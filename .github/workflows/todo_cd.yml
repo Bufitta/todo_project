@@ -19,7 +19,7 @@ jobs:
         host: ${{ secrets.HOST }}
         key: ${{ secrets.SSH_KEY }}
         script: |
-          cd ~
+          cd ~/todo_project
           git pull origin master
           source ~/venv/bin/activate
           pip install -r requirements.txt
