@@ -3,7 +3,7 @@ name: TODO CI
 on:
   push:
     branches: [ master ]
-  puu_request:
+  pull_request:
     branches: [ master ]
 
 jobs:
