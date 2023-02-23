@@ -3,7 +3,6 @@ from tasks.models import Task, Category, User
 from .serializers import TaskSerializer, CategorySerializer, UserSerializer
 
 
-# for test
 class TaskViewSet(viewsets.ModelViewSet):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
