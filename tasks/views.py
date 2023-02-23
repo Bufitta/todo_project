@@ -17,6 +17,5 @@ def category_tasks(request, slug):
 def task_detail(request, category_slug, pk):
     category = get_object_or_404(Category, slug=category_slug)
     task = get_object_or_404(Task, pk=pk)
-    context = {'task': task}
+    context = {'task': task, 'category': category}
     return render(request, 'task_detail.html', context)
-

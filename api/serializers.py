@@ -1,4 +1,4 @@
-import re, datetime
+import re
 from rest_framework import serializers
 from tasks.models import Task, Category, User
 from django.core.exceptions import ObjectDoesNotExist
@@ -45,7 +45,6 @@ class CategorySerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(required=True)
-
 
     class Meta:
         model = User
