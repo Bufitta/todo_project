@@ -27,9 +27,8 @@ jobs:
           python manage.py migrate
           python manage.py migrate --run-syncdb
           python manage.py check
-          python manage.py runserver
-          # sudo systemctl daemon-reload
-          # sudo systemctl restart gunicorn
+          sudo systemctl daemon-reload
+          sudo systemctl restart gunicorn
   on-failure:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'failure' }}
