@@ -1,7 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Task, Category
 
-
 def index(request):
     tasks = Task.objects.filter(done=False)
     context = {'tasks': tasks}
