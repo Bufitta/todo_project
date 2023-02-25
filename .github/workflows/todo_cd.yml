@@ -21,7 +21,14 @@ jobs:
         script: |
           cd ~/todo_project
           git pull origin master
-          sudo docker-compose up -d --build
+          source ~/venv/bin/activate
+          pip install -r requirements.txt
+          python manage.py makemigrations
+          python manage.py migrate
+          python manage.py migrate --run-syncdb
+          python manage.py check
+          sudo systemctl daemon-reload
+          sudo systemctl restart gunicorn
   on-failure:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'failure' }}
