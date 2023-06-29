@@ -6,7 +6,7 @@ background: #7e40f6;
 background: -webkit-linear-gradient(to right, rgba(126, 64, 246, 1), rgba(80, 139, 252, 1));
 
 /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-background: linear-gradient(to right, rgba(126, 64, 246, 1), rgba(80, 139, 252, 1))
+background: linear-gradient(to right, rgb(64, 225, 246), rgba(80, 139, 252, 1))
 }
 
 .mask-custom {
@@ -16,4 +16,13 @@ backdrop-filter: blur(25px);
 border: 2px solid rgba(255, 255, 255, 0.05);
 background-clip: padding-box;
 box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.03);
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+a:hover {
+  color: rgba(80, 139, 252, 1);
 }

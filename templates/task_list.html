@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<main class="vh-100 gradient-custom-2">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-12 col-xl-10">
+        <div class="card mask-custom">
+          <div class="card-body p-4 text-white">
+            <div class="text-center pt-3 pb-2">
+              <img src="{% static 'img/check1.webp' %}" alt="Check" width="60">
+              <h2 class="my-4">Список задач</h2>
+            </div>
+            <table class="table text-white mb-0">
+              <thead>
+                <tr>
+                  <th scope="col">No.</th>
+                  <th scope="col">Задача</th>
+                  <th scope="col">Категория</th>
+                  <th scope="col">Приоритет</th>
+                  <th scope="col">Дедлайн</th>
+                  <th scope="col">Статус</th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for task in tasks %}
+                <tr class="fw-normal">
+                  <th>{{ forloop.counter }}</th>
+                  <td class="align-middle">
+                    <a href="{% url 'task_detail' task.category.slug task.pk %}" title="">{{ task.title}}</a>
+                  </td>
+                  <td class="align-middle">
+                    <a href="{% url 'category_tasks' task.category.slug %}" title="">{{ task.category.title }}</a>
+                  </td>
+                  <td class="align-middle">
+                    <h6 class="mb-0"><span class="badge">{{ task.get_priority_display }}</span></h6>
+                  </td>
+                  <td class="align-middle">
+                    <i class="fas fa-hourglass-half me-2 text-warning"></i>{{ task.deadline|default_if_none:'Без срока' }}
+                  </td>
+                  <td class="align-middle">
+                      {% if task.done %}
+                        <i class="fas fa-check fa-lg text-success me-3"></i>
+                      {% else %}
+                        <i class="fas fa-xmark fa-lg text-danger me-3"></i>
+                      {% endif %}
+                  </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}
